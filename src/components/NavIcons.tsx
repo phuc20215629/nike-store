@@ -30,15 +30,14 @@ const NavIcon = () => {
           <div className="mt-2 cursor-pointer">Logout</div>
         </div>
       )}
+
       <FaBell className="cursor-pointer w-6 h-6" />
+
       <div
         className="relative cursor-pointer"
         onClick={() => setIsCartOpen((prev) => !prev)}
       >
-        <FaShoppingCart
-          className="cursor-pointer w-6 h-6"
-          onClick={() => setIsCartOpen((prev) => !prev)}
-        />
+        <FaShoppingCart className="cursor-pointer w-6 h-6" />
         <div className="absolute -top-3 -right-3 w-5 h-5 bg-lama rounded-full text-xs text-white flex items-center justify-center">
           2
         </div>
