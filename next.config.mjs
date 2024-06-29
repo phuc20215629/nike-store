@@ -15,6 +15,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "static.nike.com",
       },
+      {
+        protocol: "https",
+        hostname: "static.wixstatic.com",
+      },
     ],
   },
 };
