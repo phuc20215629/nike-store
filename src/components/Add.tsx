@@ -38,9 +38,13 @@ const Add = ({
               +
             </button>
           </div>
-          <div className="text-xs">
-            Only <span className="text-lama">{stock} items</span> left!
-          </div>
+          {stock < 1 ? (
+            <div className="text-xs">Sold out!</div>
+          ) : (
+            <div className="text-xs">
+              Only <span className="text-lama">{stock} items</span> left!
+            </div>
+          )}
         </div>
         <button className="w-36 text-sm font-medium rounded-3xl ring-1 ring-lama text-lama py-2 px-4 hover:bg-lama hover:text-white disabled:cursor-not-allowed disabled:bg-pink-200 disabled:text-white disabled:ring-none">
           Add to Bag
