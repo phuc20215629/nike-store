@@ -14,7 +14,6 @@ type CartState = {
     quantity: number
   ) => void;
   removeItem: (wixClient: WixClient, itemId: string) => void;
-  // getTotal: (wixClient: WixClient) => void;
 };
 
 export const useCartStore = create<CartState>((set) => ({
@@ -68,14 +67,4 @@ export const useCartStore = create<CartState>((set) => ({
       isLoading: false,
     });
   },
-
-  // getTotal: async (wixClient) => {
-  //   set((state) => ({ ...state, isLoading: true }));
-  //   const res = (await wixClient.currentCart.estimateCurrentCartTotals());
-  //   set({
-  //     cart: res.cart,
-  //     counter: res.cart?.lineItems.length,
-  //     isLoading: false,
-  //   });
-  // },
 }));

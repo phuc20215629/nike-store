@@ -43,12 +43,10 @@ const SinglePage = async ({ params }: { params: { slug: string } }) => {
         />
         <div className="h-[2px] bg-gray-100" />
 
-        {price === discountedPrice ? (
+        {price !== discountedPrice ? (
           <div className="flex items-center gap-4">
-            <h3 className="text-xl text-gray-500 line-through">
-              {discountedPrice}
-            </h3>
-            <h2 className="text-2xl font-medium">{price}</h2>
+            <h3 className="text-xl text-gray-500 line-through">{price}</h3>
+            <h2 className="text-2xl font-medium">{discountedPrice}</h2>
           </div>
         ) : (
           <div className="flex items-center gap-4">
