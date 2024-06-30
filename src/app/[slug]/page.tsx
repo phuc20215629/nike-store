@@ -4,6 +4,8 @@ import ProductImages from "@/components/ProductImages";
 import { wixClientServer } from "@/lib/wixClientServer";
 import { notFound } from "next/navigation";
 import DOMPurify from "isomorphic-dompurify";
+import { Suspense } from "react";
+import Reviews from "@/components/Reviews";
 
 const SinglePage = async ({ params }: { params: { slug: string } }) => {
   const wixClient = await wixClientServer();
@@ -27,6 +29,7 @@ const SinglePage = async ({ params }: { params: { slug: string } }) => {
       <div className="w-full lg:w-1/2 lg:sticky top-20 h-max">
         <ProductImages items={product.media?.items} />
       </div>
+
       {/* DESCRIPTION */}
       <div className="w-full lg:w-1/2 flex flex-col gap-6">
         <h1
@@ -78,9 +81,15 @@ const SinglePage = async ({ params }: { params: { slug: string } }) => {
                 __html: DOMPurify.sanitize(section.description || ""),
               }}
             />
-            {/* <p>{section.description}</p> */}
           </div>
         ))}
+        <div className="h-[2px] bg-gray-100" />
+
+        {/* REVIEWS */}
+        <h1 className="text-2xl">User Reviews</h1>
+        <Suspense fallback="Loading...">
+          <Reviews productId={product._id!} />
+        </Suspense>
       </div>
     </div>
   );
