@@ -9,7 +9,7 @@ import { FaBell, FaShoppingCart, FaUserCircle } from "react-icons/fa";
 import CartModal from "./CartModal";
 import { useCartStore } from "@/hooks/useCartStore";
 
-const NavIcon = () => {
+const NavIcon = async () => {
   const router = useRouter();
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -19,8 +19,11 @@ const NavIcon = () => {
   const isLoggedIn = wixClient.auth.loggedIn();
 
   const handleProfile = () => {
-    if (!isLoggedIn) router.push("/login");
-    else setIsProfileOpen((prev) => !prev);
+    if (!isLoggedIn) {
+      router.push("/login");
+    } else {
+      setIsProfileOpen(!isProfileOpen);
+    }
   };
 
   const handleLogout = async () => {
@@ -29,7 +32,7 @@ const NavIcon = () => {
     const { logoutUrl } = await wixClient.auth.logout(window.location.href);
     setIsLoading(false);
     setIsProfileOpen(false);
-    router.push(logoutUrl);
+    router.push("/");
   };
 
   const { cart, counter, getCart } = useCartStore();
@@ -45,7 +48,7 @@ const NavIcon = () => {
       />
       {isProfileOpen && (
         <div className="absolute p-4 rounded-md top-12 left-0 bg-white text-sm shadow-[0_3px_10px_rgb(0,0,0,0.2)] z-20">
-          <Link href="/">Profile</Link>
+          <Link href="/profile">Profile</Link>
           <div className="mt-2 cursor-pointer" onClick={handleLogout}>
             {isLoading ? "Logging out..." : "Logout"}
           </div>
