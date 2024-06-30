@@ -1,5 +1,6 @@
 import Filter from "@/components/Filter";
 import ProductList from "@/components/ProductList";
+import { Button } from "@/components/ui/button";
 import { wixClientServer } from "@/lib/wixClientServer";
 import Image from "next/image";
 import { Suspense } from "react";
@@ -19,9 +20,7 @@ const ListPage = async ({ searchParams }: { searchParams: any }) => {
             Grab up to 50% off on
             <br /> Selected Products
           </h1>
-          <button className="rounded-3xl bg-black text-white w-max py-3 px-5 text-sm font-semibold">
-            Buy Now
-          </button>
+          <Button className="rounded-3xl">Buy Now</Button>
         </div>
         <div className="relative w-1/3">
           <Image src="/nike-logo.png" alt="" fill className="object-contain" />

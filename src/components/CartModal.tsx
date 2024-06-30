@@ -5,10 +5,11 @@ import { useWixClients } from "@/hooks/useWixClients";
 import { currentCart } from "@wix/ecom";
 import { media as wixMedia } from "@wix/sdk";
 import Image from "next/image";
+import { Button } from "./ui/button";
 
 const CartModal = () => {
   const wixClient = useWixClients();
-  const { cart, removeItem, getCart, isLoading } = useCartStore();
+  const { cart, removeItem, isLoading } = useCartStore();
 
   const handleCheckout = async () => {
     try {
@@ -36,13 +37,13 @@ const CartModal = () => {
   };
 
   return (
-    <div className="w-max absolute p-4 rounded-md shadow-[0_3px_10px_rgb(0,0,0,0.2)] bg-white top-12 right-0 flex flex-col gap-6 z-20">
+    <div className="w-full h-full px-4 py-8 absolute right-0 top-10 flex flex-col justify-between ">
       {!cart.lineItems ? (
         <div className="">Cart is empty</div>
       ) : (
         <>
           {/* LIST OF ITEMS */}
-          <div className="flex flex-col gap-8">
+          <div className="flex flex-col gap-8 overflow-y-scroll">
             {/* ITEM */}
             {cart.lineItems.map((item) => (
               <div className="flex gap-4" key={item._id}>
@@ -96,28 +97,26 @@ const CartModal = () => {
                     </span>
                   </div>
                 </div>
+                <hr />
               </div>
             ))}
           </div>
           {/* TOTAL PRICE */}
-          <div>
-            <div className="flex items-center justify-between font-semibold mb-4">
+          <div className="mb-4">
+            <hr />
+            <div className="flex items-center justify-between font-semibold my-4">
               <span className="">Subtotal</span>
               {/* @ts-ignore */}
               <span className="">${cart.subtotal?.amount}</span>
             </div>
-            <hr />
-            <div className="flex justify-between text-sm mt-4">
-              <button className="rounded-md py-3 px-4 ring-1 ring-gray-300">
-                View cart
-              </button>
-              <button
-                className="rounded-md py-3 px-4 bg-black text-white disabled:cursor-not-allowed disabled:opacity-75"
+            <div className="flex justify-between text-sm">
+              <Button
                 disabled={isLoading}
                 onClick={handleCheckout}
+                className="w-full"
               >
                 Checkout
-              </button>
+              </Button>
             </div>
           </div>
         </>

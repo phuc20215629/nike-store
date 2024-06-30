@@ -80,7 +80,7 @@ const CustomizedProducts = ({
                   className="w-8 h-8 rounded-full ring-1 ring-gray-300 cursor-pointer relative"
                   style={{
                     backgroundColor: disabled
-                      ? lightenColor(choice.value!, 50)
+                      ? lightenColor(choice.value!, 60)
                       : choice.value,
                     cursor: disabled ? "not-allowed" : "pointer",
                   }}
@@ -95,16 +95,17 @@ const CustomizedProducts = ({
                   )}
                 </li>
               ) : (
+                // Size
                 <li
-                  className="ring-1 ring-lama text-lama rounded-md py-1 px-4 text-sm cursor-pointer"
+                  className="ring-1 ring-black text-black rounded-md py-1 px-4 text-sm cursor-pointer"
                   style={{
                     backgroundColor: selected
-                      ? "#f35c7a"
+                      ? "black"
                       : disabled
-                      ? "#FBCFE8"
+                      ? "gray"
                       : "white",
                     boxShadow: disabled ? "none" : "",
-                    color: selected || disabled ? "white" : "#f35c73",
+                    color: selected || disabled ? "white" : "black",
                     cursor: disabled ? "not-allowed" : "pointer",
                   }}
                   onClick={clickHandler}

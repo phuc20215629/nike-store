@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import DOMPurify from "isomorphic-dompurify";
 import Pagination from "./Pagination";
+import { Button } from "./ui/button";
 
 const PRODUCT_PER_PAGE = 8;
 
@@ -21,10 +22,6 @@ const ProductList = async ({
     .queryProducts()
     .startsWith("name", searchParams?.name || "")
     .eq("collectionIds", categoryId)
-    .hasSome(
-      "productType",
-      searchParams?.type ? [searchParams.type] : ["physical", "digital"]
-    )
     .gt("priceData.price", searchParams?.min || 0)
     .lt("priceData.price", searchParams?.max || 999999)
     .limit(limit || PRODUCT_PER_PAGE)
@@ -83,9 +80,7 @@ const ProductList = async ({
               __html: DOMPurify.sanitize(product.description || ""),
             }}
           />
-          <button className="w-max rounded-2xl ring-1 ring-lama text-lama py-2 px-4 hover:bg-lama hover:text-white">
-            Add to cart
-          </button>
+          <Button variant={"outline"}>Detail</Button>
         </Link>
       ))}
       {searchParams?.category || searchParams?.name ? (

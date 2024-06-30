@@ -6,6 +6,19 @@ import { notFound } from "next/navigation";
 import DOMPurify from "isomorphic-dompurify";
 import { Suspense } from "react";
 import Reviews from "@/components/Reviews";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import Image from "next/image";
 
 const SinglePage = async ({ params }: { params: { slug: string } }) => {
   const wixClient = await wixClientServer();
@@ -72,7 +85,8 @@ const SinglePage = async ({ params }: { params: { slug: string } }) => {
           />
         )}
 
-        <div className="h-[2px] bg-gray-100" />
+        {/* INFO SECTION */}
+        {/* <div className="h-[2px] bg-gray-100" />
         {product.additionalInfoSections?.map((section: any) => (
           <div className="text-sm" key={section.title}>
             <h4 className="font-medium mb-4">{section.title}</h4>
@@ -83,7 +97,62 @@ const SinglePage = async ({ params }: { params: { slug: string } }) => {
             />
           </div>
         ))}
-        <div className="h-[2px] bg-gray-100" />
+        <div className="h-[2px] bg-gray-100" /> */}
+        <hr />
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button variant="link" className="items-start justify-start px-0">
+              View Product Details
+            </Button>
+          </DialogTrigger>
+          <DialogContent className="max-h-[600px] md:w-[600px] xl:w-[800px] xl:max-w-2xl overflow-y-scroll">
+            <DialogHeader>
+              <DialogTitle>
+                <div className="flex flex-row gap-2">
+                  <Image
+                    src={product.media?.items?.at(0)?.image?.url!}
+                    alt=""
+                    width="50"
+                    height="50"
+                    className="object-cover rounded-md"
+                  />
+                  <div className="flex flex-col gap-2 justify-center">
+                    <div
+                      className="text-md"
+                      dangerouslySetInnerHTML={{
+                        __html: DOMPurify.sanitize(product.name || ""),
+                      }}
+                    />
+                    {price !== discountedPrice ? (
+                      <div className="flex items-center gap-2">
+                        <h3 className="text-xs text-gray-500 line-through">
+                          {price}
+                        </h3>
+                        <h2 className="text-sm">{discountedPrice}</h2>
+                      </div>
+                    ) : (
+                      <div className="flex items-center gap-4">
+                        <h3 className="text-sm">{price}</h3>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </DialogTitle>
+            </DialogHeader>
+            <div className="h-[2px] bg-gray-100" />
+            {product.additionalInfoSections?.map((section: any) => (
+              <div className="text-sm" key={section.title}>
+                <h4 className="font-bold mb-2 text-md">{section.title}</h4>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: DOMPurify.sanitize(section.description || ""),
+                  }}
+                />
+              </div>
+            ))}
+            <div className="h-[2px] bg-gray-100" />
+          </DialogContent>
+        </Dialog>
 
         {/* REVIEWS */}
         <h1 className="text-2xl">User Reviews</h1>
