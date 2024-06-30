@@ -4,9 +4,10 @@ import { useWixClients } from "@/hooks/useWixClients";
 import Cookies from "js-cookie";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaBell, FaShoppingCart, FaUserCircle } from "react-icons/fa";
 import CartModal from "./CartModal";
+import { useCartStore } from "@/hooks/useCartStore";
 
 const NavIcon = () => {
   const router = useRouter();
@@ -31,6 +32,11 @@ const NavIcon = () => {
     router.push(logoutUrl);
   };
 
+  const { cart, counter, getCart } = useCartStore();
+  useEffect(() => {
+    getCart(wixClient);
+  }, [wixClient, getCart]);
+
   return (
     <div className="flex items-center gap-4 xl:gap-6 relative">
       <FaUserCircle
@@ -53,8 +59,8 @@ const NavIcon = () => {
         onClick={() => setIsCartOpen((prev) => !prev)}
       >
         <FaShoppingCart className="cursor-pointer w-6 h-6" />
-        <div className="absolute -top-3 -right-3 w-5 h-5 bg-lama rounded-full text-xs text-white flex items-center justify-center">
-          2
+        <div className="absolute -top-3 -right-3 w-5 h-5 bg-red-100 rounded-full text-xs text-black flex items-center justify-center">
+          {counter}
         </div>
         {isCartOpen && <CartModal />}
       </div>

@@ -42,15 +42,16 @@ const LoginPage = () => {
   useEffect(() => {
     if (error)
       toast({
-        title: "Error",
+        title: "Uh oh! Something went wrong.",
+        variant: "destructive",
         description: error,
-        duration: 5000,
+        duration: 4000,
       });
     if (message)
       toast({
-        title: message,
-        description: "",
-        duration: 5000,
+        title: "Nice",
+        description: message,
+        duration: 4000,
       });
   }, [error, message]);
 
@@ -133,16 +134,20 @@ const LoginPage = () => {
           } else {
             setError("Something went wrong!");
           }
+          break;
         case LoginState.EMAIL_VERIFICATION_REQUIRED:
-          setMessage("Email verification required");
+          setMessage("Email verification required!");
           setMode(MODE.EMAIL_VERIFICATION);
+          break;
         case LoginState.OWNER_APPROVAL_REQUIRED:
           setMessage("Your account is pending approval");
+          break;
         default:
           setError("Something went wrong!");
+          break;
       }
-    } catch (error) {
-      console.log(error);
+    } catch (err) {
+      console.log(err);
       setError("Authentication Error!");
     } finally {
       setIsLoading(false);
