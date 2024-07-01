@@ -3,29 +3,32 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { Button } from "./ui/button";
 
 const slides = [
   {
     id: 1,
-    title: "Summer Sale Collections",
-    description: "Sale! Up to 50% off!",
-    img: "https://images.pexels.com/photos/1926769/pexels-photo-1926769.jpeg?auto=compress&cs=tinysrgb&w=800",
+    title: "DON'T WASTE YOUR ENERGY",
+    description:
+      "Run in Pegasus. Feel the responsive energy return of Air Zoom and all-new ReacX Foam",
+    img: "https://i.pinimg.com/originals/8b/28/e3/8b28e3f8a8f948e669bf58442c2f6449.png",
     url: "/",
-    bg: "bg-gradient-to-r from-yellow-50 to-pink-50",
+    bg: "bg-white",
   },
   {
     id: 2,
-    title: "Winter Sale Collections",
-    description: "Sale! Up to 50% off!",
-    img: "https://images.pexels.com/photos/1021693/pexels-photo-1021693.jpeg?auto=compress&cs=tinysrgb&w=800",
+    title: "JORDAN SPORT",
+    description:
+      "Rooted in basketball, influenced by street culture. Jazz Chisholm and Guard Rhyne Howard stunt in elevated pieces designed to complement performance and style.",
+    img: "https://i.pinimg.com/originals/65/64/ea/6564eaff4827d5f5062f2940b8952405.jpg",
     url: "/",
     bg: "bg-gradient-to-r from-pink-50 to-blue-50",
   },
   {
     id: 3,
-    title: "Spring Sale Collections",
-    description: "Sale! Up to 50% off!",
-    img: "https://images.pexels.com/photos/1183266/pexels-photo-1183266.jpeg?auto=compress&cs=tinysrgb&w=800",
+    title: "JUST DO IT",
+    description: "Bring your game. Your only limit is you!",
+    img: "https://i.pinimg.com/564x/66/03/45/6603454ddb228402260ca9b2e57cd17b.jpg",
     url: "/",
     bg: "bg-gradient-to-r from-blue-50 to-yellow-50",
   },
@@ -54,17 +57,11 @@ const Slider = () => {
             key={slide.id}
           >
             {/* TEXT CONTAINER */}
-            <div className="h-1/2 xl:w-1/2 xl:h-full flex flex-col items-center justify-center gap-8 2xl:gap-12 text-center">
-              <h2 className="text-xl lg:text-3xl 2xl:text-5xl">
-                {slide.description}
-              </h2>
-              <h1 className="text-5xl lg:text-6xl 2xl:text-8xl font-semibold">
-                {slide.title}
-              </h1>
+            <div className="h-1/2 xl:w-1/2 xl:h-full flex flex-col items-center justify-center gap-4 text-center">
+              <h1 className="text-5xl font-extrabold">{slide.title}</h1>
+              <span className="p-2">{slide.description}</span>
               <Link href={slide.url}>
-                <button className="rounded-md bg-black text-white py-3 px-4 ">
-                  SHOP NOW
-                </button>
+                <Button className="rounded-3xl">SHOP NOW</Button>
               </Link>
             </div>
 

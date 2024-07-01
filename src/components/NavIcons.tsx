@@ -1,34 +1,26 @@
 "use client";
 
+import { useCartStore } from "@/hooks/useCartStore";
 import { useWixClients } from "@/hooks/useWixClients";
 import Cookies from "js-cookie";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FaShoppingCart, FaUserCircle } from "react-icons/fa";
 import { IoLogOut } from "react-icons/io5";
 import CartModal from "./CartModal";
-import { useCartStore } from "@/hooks/useCartStore";
-import { Skeleton } from "./ui/skeleton";
-import { useToast } from "./ui/use-toast";
+import { Button } from "./ui/button";
 import {
   Sheet,
-  SheetClose,
   SheetContent,
-  SheetDescription,
-  SheetFooter,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
 } from "./ui/sheet";
-import { Button } from "./ui/button";
-import { Label } from "./ui/label";
-import { Input } from "./ui/input";
+import { useToast } from "./ui/use-toast";
 
 const NavIcon = () => {
   const { toast } = useToast();
   const router = useRouter();
-  const [isCartOpen, setIsCartOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   const wixClient = useWixClients();

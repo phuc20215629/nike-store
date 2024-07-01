@@ -68,19 +68,23 @@ const ProductList = async ({
               className="absolute object-cover rounded-md"
             />
           </div>
-          <div className="flex justify-between">
-            <span className="font-medium">{product.name}</span>
-            <span className="font-semibold">
-              {product.convertedPriceData?.formatted?.price}
-            </span>
-          </div>
+
+          <span className="font-medium">{product.name}</span>
+
           <div
             className="text-sm text-gray-500"
             dangerouslySetInnerHTML={{
               __html: DOMPurify.sanitize(product.description || ""),
             }}
           />
-          <Button variant={"outline"}>Detail</Button>
+          <Button variant={"outline"}>
+            <span className="font-semibold">
+              {product.convertedPriceData?.formatted?.discountedPrice ===
+              product.convertedPriceData?.formatted?.price
+                ? product.convertedPriceData?.formatted?.price
+                : product.convertedPriceData?.formatted?.discountedPrice}
+            </span>
+          </Button>
         </Link>
       ))}
       {searchParams?.category || searchParams?.name ? (

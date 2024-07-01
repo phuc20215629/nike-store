@@ -1,9 +1,8 @@
+import dynamic from "next/dynamic";
+import Image from "next/image";
 import Link from "next/link";
 import Menu from "./Menu";
-import Image from "next/image";
 import SearchBar from "./SearchBar";
-import dynamic from "next/dynamic";
-// import NavIcons from "./NavIcons";
 
 const NavIcons = dynamic(() => import("./NavIcons"), { ssr: false });
 
@@ -18,15 +17,15 @@ const Navbar = () => {
         <Menu />
       </div>
       {/* Bigger screen */}
-      <div className="hidden md:flex items-center justify-between gap-8 h-full">
+      <div className="hidden md:flex items-center justify-between h-full">
         {/* Left side */}
-        <div className="w-1/3 xl:w-1/2 flex items-center gap-12">
+        <div className="w-1/5 flex items-center gap-12">
           <Link href="/">
             <Image src={"/nike-logo.png"} alt="logo" width={70} height={70} />
           </Link>
         </div>
         {/* Right side */}
-        <div className="w-2/3 xl:w-1/2 flex items-center justify-between gap-8">
+        <div className="w-4/5 flex items-center justify-between gap-8">
           <SearchBar />
           <NavIcons />
         </div>
