@@ -45,13 +45,13 @@ const LoginPage = () => {
         title: "Uh oh! Something went wrong.",
         variant: "destructive",
         description: error,
-        duration: 4000,
+        duration: 3000,
       });
     if (message)
       toast({
         title: "Nice",
         description: message,
-        duration: 4000,
+        duration: 3000,
       });
   }, [error, message]);
 
