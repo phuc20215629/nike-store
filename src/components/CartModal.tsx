@@ -6,6 +6,7 @@ import { currentCart } from "@wix/ecom";
 import { media as wixMedia } from "@wix/sdk";
 import Image from "next/image";
 import { Button } from "./ui/button";
+import { FaCartShopping } from "react-icons/fa6";
 
 const CartModal = () => {
   const wixClient = useWixClients();
@@ -39,7 +40,18 @@ const CartModal = () => {
   return (
     <div className="w-full h-full px-4 py-8 absolute right-0 top-10 flex flex-col justify-between ">
       {!cart.lineItems ? (
-        <div className="">Cart is empty</div>
+        <div className="flex flex-col gap-3 justify-center mt-20">
+          <Image
+            src="/empty-cart.png"
+            alt=""
+            width={350}
+            height={350}
+            className="object-cover rounded-md"
+          />{" "}
+          <div className="text-center font-semibold text-xl text-muted-foreground">
+            Oops! Your cart is empty.
+          </div>
+        </div>
       ) : (
         <>
           {/* LIST OF ITEMS */}

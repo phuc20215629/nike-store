@@ -22,6 +22,7 @@ const Add = ({
   };
 
   const wixClient = useWixClients();
+
   const { addItem, isLoading } = useCartStore();
 
   return (

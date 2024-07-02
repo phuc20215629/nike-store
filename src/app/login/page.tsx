@@ -119,7 +119,7 @@ const LoginPage = () => {
             expires: 3,
           });
           wixClient.auth.setTokens(tokens);
-          router.push("/");
+          router.refresh();
           break;
         case LoginState.FAILURE:
           if (

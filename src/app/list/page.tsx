@@ -1,5 +1,6 @@
 import Filter from "@/components/Filter";
 import ProductList from "@/components/ProductList";
+import Skeleton from "@/components/Skeleton";
 import { Button } from "@/components/ui/button";
 import { wixClientServer } from "@/lib/wixClientServer";
 import Image from "next/image";
@@ -32,7 +33,7 @@ const ListPage = async ({ searchParams }: { searchParams: any }) => {
       <h1 className="mt-12 text-xl font-semibold">
         {category.collection?.name}
       </h1>
-      <Suspense fallback="loading...">
+      <Suspense fallback={<Skeleton />}>
         <ProductList
           categoryId={
             category.collection?._id || "00000000-000000-000000-000000000001" // all products id for fallback

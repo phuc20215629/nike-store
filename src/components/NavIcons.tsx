@@ -26,7 +26,11 @@ const NavIcon = () => {
   const wixClient = useWixClients();
   const isLoggedIn = wixClient.auth.loggedIn();
 
-  useEffect(() => {}, [isLoggedIn]);
+  const { counter, getCart } = useCartStore();
+  useEffect(() => {
+    getCart(wixClient);
+    console.log("OK");
+  }, [wixClient, getCart, isLoggedIn, toast]);
 
   const handleProfile = () => {
     if (!isLoggedIn) {
@@ -39,18 +43,13 @@ const NavIcon = () => {
     Cookies.remove("refreshToken");
     await wixClient.auth.logout(window.location.href);
     setIsLoading(false);
-    router.push("/");
+    window.location.reload();
     toast({
       title: "Success!",
       description: "You are logged out.",
       duration: 4000,
     });
   };
-
-  const { counter, getCart } = useCartStore();
-  useEffect(() => {
-    getCart(wixClient);
-  }, [wixClient, getCart]);
 
   return (
     <div className="flex items-center relative">
