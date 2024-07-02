@@ -29,7 +29,6 @@ const NavIcon = () => {
   const { counter, getCart } = useCartStore();
   useEffect(() => {
     getCart(wixClient);
-    console.log("OK");
   }, [wixClient, getCart, isLoggedIn, toast]);
 
   const handleProfile = () => {

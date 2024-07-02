@@ -17,12 +17,12 @@ const ProductImages = ({ items }: { items: any }) => {
           className="object-cover rounded-md"
         />
       </div>
-      <div className="flex justify-between gap-4 mt-8">
+      <div className="flex justify-start gap-4 mt-8">
         {items.map((item: any, i: number) => (
           <div
             className="w-1/4 h-32 relative gap-4 cursor-pointer "
             key={item._id}
-            onClick={() => setIndex(i)}
+            onMouseOver={() => setIndex(i)}
           >
             <Image
               src={item.image.url}

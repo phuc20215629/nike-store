@@ -43,6 +43,7 @@ const ProductList = async ({
   }
 
   const res = await productQuery.find();
+  console.log(res.items.at(1)?.priceData?.formatted?.discountedPrice);
 
   return (
     <div className="mt-12 flex gap-x-8 gap-y-16 justify-between lg:justify-center flex-wrap">
